@@ -18,7 +18,7 @@ def handle_yandex_response(r):
         logging.info(f"---> Response Status: Exact")
         logging.info(f"---------> Point: {result['Point [lon  lat]']} Distance from MKAD: {result['Distance from MKAD']}")
     else:   
-        result= {'Response Status': 'Inprecise',}
+        result= {'Response Status': 'Inaccurate',}
         logging.info(f"---> Response Status: Inaccurate")
         for i in range(len(point)):
             result[i] =  {
