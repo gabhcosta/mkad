@@ -8,6 +8,7 @@ from configparser import ConfigParser, NoOptionError, NoSectionError, ExtendedIn
 from logging.handlers import TimedRotatingFileHandler
 from abc import ABC
 
+
 class AppSettings(ABC):
     """
     Handles the reading/writing of global parameters of the application, such
@@ -48,9 +49,9 @@ class AppSettings(ABC):
     )
 
     LOG_FILE_PATH = os.path.join(
-        os.path.dirname(__main__.__file__), 'logs\\'
-        '.log'
+        os.path.dirname(__main__.__file__), 'logs\\', '.log'
     )
+    
 
     _initialized_parser = False
     _initialized_logger = False
