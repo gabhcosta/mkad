@@ -14,7 +14,7 @@ def calculate_distance_from_to(point:Point= None, polygon:Polygon= Polygon(MKAD_
     if not isinstance(point, Point):
         raise ValueError(f'Expected type shapely.geometry.Point. Got {type (point)}')
     if not isinstance(polygon, Polygon):
-        raise ValueError(f'Expected type shapely.geometry.polygon.Polygon. Got {type (point)}')
+        raise ValueError(f'Expected type shapely.geometry.polygon.Polygon. Got {type (polygon)}')
 
     # Checks if the point is inside the polygon
     if isinside(point, polygon):
@@ -33,7 +33,7 @@ def get_nearest_coords(polygon:Polygon= None, point:Point= None) -> Point:
     if not isinstance(point, Point):
         raise ValueError(f'Expected type shapely.geometry.Point. Got {type (point)}')
     if not isinstance(polygon, Polygon):
-        raise ValueError(f'Expected type shapely.geometry.polygon.Polygon. Got {type (point)}')
+        raise ValueError(f'Expected type shapely.geometry.polygon.Polygon. Got {type (polygon)}')
 
     polygon_lat, polygon_lon= polygon.exterior.coords.xy
     polygon_coords= [tuple([polygon_lat[i], polygon_lon[i]]) for i in range(len(polygon_lat))]
