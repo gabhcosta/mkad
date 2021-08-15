@@ -4,7 +4,6 @@ from flask_restful import abort
 
 
 def has2arguments(args):
-     print(args)
      counter= 0
      for _, v in args.items():
           if not counter <=2:

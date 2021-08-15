@@ -8,7 +8,7 @@ from mkad.app.helpers.input_checkers import isinside
 
 def calculate_distance_from_to(point: Point, polygon:Polygon= Polygon(MKAD_POLYGON_COORDS)):
     if isinside(point, polygon):
-        return 0
+        return 'Address is inside MKAD, distance 0'
     nearest_point_coord = get_nearest_coords(polygon, point)
     point_coord= list(point.coords)[0]
     return round(vincenty(point_coord, nearest_point_coord), 2)

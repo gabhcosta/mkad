@@ -22,7 +22,7 @@ class DistanceFromMKAD(Resource):
         input_checkers.has2arguments(args)
         address= build_address(args)
         logging.info(f"{'-' * 50} REQUEST {'-' * 50}")
-        logging.info(f"-> Searched address: {address}")
+        logging.info("-> Searched address: %s", address.encode('utf8'))
         payload= {
             "apikey": AppSettings.get_str("yandex_api_key"),
             "geocode": address ,
