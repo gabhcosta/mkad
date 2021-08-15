@@ -1,3 +1,4 @@
+import logging
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 from flask_restful import abort
@@ -12,6 +13,7 @@ def has2arguments(args:dict= None) -> None:
      counter= 0
      for _, v in args.items():
           if not counter <=2:
+               logging.info(f"{'-' * 47} END OF REQUEST {'-' * 46}")
                abort(400, status_code='400', error='MinArguments', message= 'Need more than 2 agurments.')
           if not v:
                counter+=1
@@ -24,6 +26,7 @@ def isbiggerthanzero(found:list= None) -> None:
      """     
 
      if found and int(found[0]) == 0:
+          logging.info(f"{'-' * 47} END OF REQUEST {'-' * 46}")
           abort(404, status_code='404', error='ResourceDoesNotExist', message= 'Could not find location.')
           
 
@@ -33,6 +36,7 @@ def haserror(error:list= None) -> None:
      """
      
      if error:
+          logging.info(f"{'-' * 47} END OF REQUEST {'-' * 46}")
           abort(error[0], message= 'Unexpected problem, probably some external resource is unreachable. Please, contact us.' )
 
 
