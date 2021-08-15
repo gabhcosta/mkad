@@ -16,9 +16,6 @@ post_parser.add_argument('street', dest='street')
 post_parser.add_argument('house', dest='house')
 
 class DistanceFromMKAD(Resource):
-    def get(self):
-        return {'It\'s Working!!'}
-
     def post(self):
         args= post_parser.parse_args()
         address= build_address(args)
@@ -34,3 +31,19 @@ class DistanceFromMKAD(Resource):
         response = handle_yandex_response(r)
         logging.info(f"{'-' * 47} END OF REQUEST {'-' * 46}")
         return response
+
+class Root(Resource):
+    def get(self):
+        return {'Server Status': 'Working!!'}
+
+    def post(self):
+        return {'Server Status': 'Working!!'}
+    
+    def put(self):
+        return {'Server Status': 'Working!!'}
+
+    def patch(self):
+        return {'Server Status': 'Working!!'}
+
+    def delete(self):
+        return {'Server Status': 'Working!!'}

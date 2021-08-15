@@ -6,6 +6,8 @@ from mkad.app.helpers.data_manipulation import  generate_shapely_point
 researcher = KeyResearcher()
 
 def handle_yandex_response(r):
+    #TODO: Adicionar validador pra erro na mensagem if error result = {erro massage}
+    #TODO: Adicionar validador pra pesquisa com resultado 0
     point= researcher.search_in(r.json(), 'Point')
     address= researcher.search_in(r.json(), 'formatted')
     if len(point) == 1 and len(address) ==1:
