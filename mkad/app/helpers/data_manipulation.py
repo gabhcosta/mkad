@@ -1,13 +1,18 @@
 import numpy as np
 from shapely.geometry import Point
 
-def generate_shapely_point(point:str):
+def generate_shapely_point(point:str= None) -> Point:
+    """This function is designed to work directly with the type of geo-coordinate response that the Yandex api gives. 
+    \nIt takes a string "Lon Lat" and transforms it into a Point(lat, lon).
+    """
     lon= float(point.split()[0])
     lat= float(point.split()[1])
     return Point(lat, lon)
 
 
 def get_equidistant_points(p1, p2, parts):
+    """This function is responsible for distributing equidistant points along a line.
+    """
     return zip(np.linspace(p1[0], p2[0], parts+1),
                np.linspace(p1[1], p2[1], parts+1))
 
