@@ -47,11 +47,3 @@ def build_address(args):
 
 
     return  ", ".join(parts)
-
-# def build_address(args):
-#     return f'{args.country+"," if args.country else ""}\
-#               {",".join(args.provinces)+"," if args.provinces else ""}\
-#               {args.area+"," if args.area else ""}\
-#               {args.locality+"," if args.locality else ""}\
-#               {args.street+"," if args.street else ""}\
-#               {args.house+"," if args.house else ""}'
