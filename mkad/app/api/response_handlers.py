@@ -2,12 +2,13 @@ import logging
 from mkad.app.utils import KeyResearcher
 from mkad.app.utils.calculator import calculate_distance_from_to
 from mkad.app.helpers.data_manipulation import  generate_shapely_point
+from mkad.app.helpers import input_checkers
 
 researcher = KeyResearcher()
 
 def handle_yandex_response(r):
-    #TODO: Adicionar validador pra erro na mensagem if error result = {erro massage}
-    #TODO: Adicionar validador pra pesquisa com resultado 0
+    input_checkers.has1location(researcher.search_in(r.json(), 'found'))
+    input_checkers.haserror(researcher.search_in(r.json(), 'statusCode'))
     point= researcher.search_in(r.json(), 'Point')
     address= researcher.search_in(r.json(), 'formatted')
     if len(point) == 1 and len(address) ==1:

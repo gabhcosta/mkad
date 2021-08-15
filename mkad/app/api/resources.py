@@ -5,6 +5,7 @@ from flask_restful import Resource
 from flask_restful import Resource, reqparse
 from .response_handlers import handle_yandex_response
 from mkad.app.helpers.data_manipulation import build_address
+from mkad.app.helpers import input_checkers
 
 
 post_parser = reqparse.RequestParser()
@@ -18,6 +19,7 @@ post_parser.add_argument('house', dest='house')
 class DistanceFromMKAD(Resource):
     def post(self):
         args= post_parser.parse_args()
+        input_checkers.has2arguments(args)
         address= build_address(args)
         logging.info(f"{'-' * 50} REQUEST {'-' * 50}")
         logging.info(f"-> Searched address: {address}")

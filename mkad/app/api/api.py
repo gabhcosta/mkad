@@ -1,7 +1,6 @@
 from mkad.settings import AppSettings
 from flask import Flask, Blueprint
 from flask_restful import Api
-
 from .resources import DistanceFromMKAD, Root
 
 AppSettings.setup()
