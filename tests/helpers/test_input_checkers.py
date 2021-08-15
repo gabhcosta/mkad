@@ -20,11 +20,11 @@ def test_has2arguments():
         assert isinstance(e, HTTPException)
 
 
-def test_has1location():
+def test_isbiggerthanzero():
     found= ['0']
 
     try:
-        input_checkers.has1location(found)
+        input_checkers.isbiggerthanzero(found)
     except Exception as e:
         assert isinstance(e, HTTPException)
 

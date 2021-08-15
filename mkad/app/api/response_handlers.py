@@ -7,11 +7,12 @@ from mkad.app.helpers import input_checkers
 researcher = KeyResearcher()
 
 def handle_yandex_response(r):
-    input_checkers.has1location(researcher.search_in(r.json(), 'found'))
+
+    input_checkers.isbiggerthanzero(researcher.search_in(r.json(), 'found'))
     input_checkers.haserror(researcher.search_in(r.json(), 'statusCode'))
     point= researcher.search_in(r.json(), 'Point')
     address= researcher.search_in(r.json(), 'formatted')
-    if len(point) == 1 and len(address) ==1:
+    if len(point)==1 and len(address) ==1:
         result= {
                     'Response Status': 'Exact',
                     'Point [lon  lat]': point[0]['pos'],

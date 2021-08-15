@@ -9,12 +9,12 @@ from mkad.app.helpers import input_checkers
 
 
 post_parser = reqparse.RequestParser()
-post_parser.add_argument('country', dest='country')
-post_parser.add_argument('provinces', dest='provinces', action='append')
-post_parser.add_argument('area', dest='area')
-post_parser.add_argument('locality', dest='locality')
-post_parser.add_argument('street', dest='street')
-post_parser.add_argument('house', dest='house')
+post_parser.add_argument('country',  dest='country')
+post_parser.add_argument('provinces',  dest='provinces', action='append')
+post_parser.add_argument('area',  dest='area')
+post_parser.add_argument('locality',  dest='locality')
+post_parser.add_argument('street',  dest='street')
+post_parser.add_argument('house',  dest='house')
 
 class DistanceFromMKAD(Resource):
     def post(self):
@@ -29,7 +29,9 @@ class DistanceFromMKAD(Resource):
             "format": "json",
             "lang": "en_US" 
         }
-        r = requests.get('https://geocode-maps.yandex.ru/1.x/', params=payload, stream= True)
+        r = requests.get('https://geocode-maps.yandex.ru/1.x/', params=payload)
+
+    
         response = handle_yandex_response(r)
         logging.info(f"{'-' * 47} END OF REQUEST {'-' * 46}")
         return response
