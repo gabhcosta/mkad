@@ -9,6 +9,7 @@ def has2arguments(args:dict= None) -> None:
      Checks whether a dictionary has at least 3 non-null values in key:value pairs. 
      If the dictionary is not valid, throws an HTTPException 400.
      """
+     
      # Input Validators  
      if not isinstance(args, dict):
           raise ValueError(f'Expected type shapely.geometry.Point. Got {type(args)}')
@@ -27,6 +28,7 @@ def isbiggerthanzero(found:list= None) -> None:
      Checks if the list is non-empty "[]" and if its first value is greater than 0.
      If the list is not valid, throws an HTTPException 404.
      """
+
      # Input Validators  
      if not isinstance(found, list):
           raise ValueError(f'Expected type shapely.geometry.Point. Got {type(found)}')     
@@ -40,6 +42,7 @@ def haserror(error:list= None) -> None:
      """
      Checks if the list exists, if it does, throws the exception which must be in the first position of the list.
      """
+
      # Input Validators  
      if not isinstance(error, list):
           raise ValueError(f'Expected type shapely.geometry.Point. Got {type(error)}')   
@@ -54,6 +57,7 @@ def isinside(point:Point= None, polygon:Polygon= None) -> bool:
      Check if the point belongs to the polygon. If it is on the border or inside it returns True.
      Consider that the Point and the Polygon are Shapely objects.
      """
+
      # Input Validators
      if not isinstance(point, Point):
           raise ValueError(f'Expected type shapely.geometry.Point. Got {type(point)}')
