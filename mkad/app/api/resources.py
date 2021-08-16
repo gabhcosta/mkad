@@ -8,13 +8,13 @@ from mkad.app.helpers.data_manipulation import build_address
 from mkad.app.helpers import input_checkers
 
 # Configuring Request Parser
-post_parser = reqparse.RequestParser()
-post_parser.add_argument('country',  dest='country')
-post_parser.add_argument('provinces',  dest='provinces', action='append')
-post_parser.add_argument('area',  dest='area')
-post_parser.add_argument('locality',  dest='locality')
-post_parser.add_argument('street',  dest='street')
-post_parser.add_argument('house',  dest='house')
+mkad_post_parser = reqparse.RequestParser()
+mkad_post_parser.add_argument('country',  dest='country')
+mkad_post_parser.add_argument('provinces',  dest='provinces', action='append')
+mkad_post_parser.add_argument('area',  dest='area')
+mkad_post_parser.add_argument('locality',  dest='locality')
+mkad_post_parser.add_argument('street',  dest='street')
+mkad_post_parser.add_argument('house',  dest='house')
 
 
 class DistanceFromMKAD(Resource):
@@ -25,7 +25,7 @@ class DistanceFromMKAD(Resource):
     
     def post(self):
         # Builds the required data
-        args= post_parser.parse_args()
+        args= mkad_post_parser.parse_args()
         input_checkers.has2arguments(args)
         address= build_address(args)
         logging.info(f"{'-' * 50} REQUEST {'-' * 50}")
