@@ -1,17 +1,30 @@
 import logging
+from werkzeug.sansio.response import Response
 from mkad.app.utils import KeyResearcher
 from mkad.app.utils.calculator import calculate_distance_from_to
 from mkad.app.helpers.data_manipulation import  generate_shapely_point
 from mkad.app.helpers import input_checkers
+from requests import Response
 
 researcher = KeyResearcher()
 
-def handle_yandex_response(r):
+def handle_yandex_response(r:Response= None) -> dict:
+    """ This function is responsible for interpreting the response from the Yandex api and returning the appropriate response. 
+    If Yandex doesn't return any locale or returns an error, the input validators will generate an error. 
+    If this method can interpret the answer correctly, it returns a single answer (Accurate), if Yandex returns only one location,
+    otherwise it returns several answers (Inaccurate) for all the locations that Yandex returned.
+    """
 
+    # Input Validators
+    if not isinstance(r, Response):
+      raise ValueError(f'Expected type requests.Response. Got {type(r)}')
     input_checkers.isbiggerthanzero(researcher.search_in(r.json(), 'found'))
     input_checkers.haserror(researcher.search_in(r.json(), 'statusCode'))
+
     point= researcher.search_in(r.json(), 'Point')
     address= researcher.search_in(r.json(), 'formatted')
+
+    # Exact, it means that Yandex returned only 1 locality
     if len(point)==1 and len(address) ==1:
         result= {
                     'Response Status': 'Exact',
@@ -21,6 +34,8 @@ def handle_yandex_response(r):
                 }
         logging.info(f"---> Response Status: Exact")
         logging.info(f"---------> Point: {result['Point [lon  lat]']} Distance from MKAD: {result['Distance from MKAD']}")
+
+    # Inaccurate, it means that Yandex returned more than 1 locality
     else:   
         result= {'Response Status': 'Inaccurate',}
         logging.info(f"---> Response Status: Inaccurate")
