@@ -67,5 +67,6 @@ def isinside(point:Point= None, polygon:Polygon= None) -> bool:
      return polygon.contains(point) or polygon.touches(point) or point.within(polygon)
 
 
-
-
+def has_special_char(string:str= None, special_charstring:str= "!@#$\\%^&*()-+?_=,<>/"):
+     if any(c in special_charstring for c in string):
+          abort(400, status_code='400', error='SpecCharNotAllowed', message= 'The request contains a special character that is not allowed.')

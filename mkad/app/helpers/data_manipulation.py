@@ -1,5 +1,6 @@
 import numpy as np
 from shapely.geometry import Point
+from mkad.app.helpers import input_checkers
 
 def generate_shapely_point(point:str= None) -> Point:
     """This function is designed to work directly with the type of geo-coordinate response that the Yandex api gives. 
@@ -77,6 +78,8 @@ def build_address(args:dict= None) -> str:
     parts=list()
     for p in _parts:
         if p:
+            # Input Validators
+            input_checkers.has_special_char(p)
             parts.append(p)
 
     return  ", ".join(parts)
