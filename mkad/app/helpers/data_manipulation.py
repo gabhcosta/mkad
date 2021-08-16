@@ -5,7 +5,7 @@ def generate_shapely_point(point:str= None) -> Point:
     """This function is designed to work directly with the type of geo-coordinate response that the Yandex api gives. 
     \nIt takes a string "Lon Lat" and transforms it into a Point(lat, lon).
     """
-    
+
     # Input Validators
     if not isinstance(point, str):
         raise ValueError(f'Expected type str. Got {type(point)}')
@@ -60,6 +60,7 @@ def redistribute_vertices(vertices:np.ndarray= None, parts:int= None) -> np.ndar
 def build_address(args:dict= None) -> str:
     """This function transforms a dictionary with the address into a string, which represents the same information.
     """
+    
     # Input Validators
     if not isinstance(args, dict):
         raise ValueError(f'Expected type dict. Got {type(args)}')
