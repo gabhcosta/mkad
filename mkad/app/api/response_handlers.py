@@ -1,4 +1,7 @@
 import logging
+from mkad.app.data import MKAD_POLYGON_COORDS
+from shapely.geometry import MultiPoint
+from shapely.geometry.polygon import Polygon
 from werkzeug.sansio.response import Response
 from mkad.app.utils import KeyResearcher
 from mkad.app.utils.calculator import calculate_distance_from_to
@@ -8,7 +11,7 @@ from requests import Response
 
 researcher = KeyResearcher()
 
-def handle_yandex_response(r:Response= None) -> dict:
+def generate_response(r:Response= None, polygon:Polygon= MultiPoint(MKAD_POLYGON_COORDS).convex_hull) -> dict:
     """ This function is responsible for interpreting the response from the Yandex api and returning the appropriate response. 
     If Yandex doesn't return any locale or returns an error, the input validators will generate an error. 
     If this method can interpret the answer correctly, it returns a single answer (Accurate), if Yandex returns only one location,
@@ -30,7 +33,7 @@ def handle_yandex_response(r:Response= None) -> dict:
                     'Response Status': 'Exact',
                     'Point [lon  lat]': point[0]['pos'],
                     'Address Found': address[0],
-                    'Distance from MKAD': f"{calculate_distance_from_to(generate_shapely_point(point[0]['pos']))} km"
+                    'Distance from MKAD': f"{calculate_distance_from_to(generate_shapely_point(point[0]['pos'], polygon))} km"
                 }
         logging.info(f"---> Response Status: Exact")
         logging.info(f"---------> Point: {result['Point [lon  lat]']} Distance from MKAD: {result['Distance from MKAD']}")
@@ -43,7 +46,7 @@ def handle_yandex_response(r:Response= None) -> dict:
             result[i] =  {
                                 'Point [lon  lat]': point[i]['pos'],
                                 'Address Found': address[i],
-                                'Distance from MKAD': f"{calculate_distance_from_to(generate_shapely_point(point[i]['pos']))} km"
+                                'Distance from MKAD': f"{calculate_distance_from_to(generate_shapely_point(point[i]['pos']), polygon)} km"
                             }
             logging.info(f"---------> Point [lon  lat]: {result[i]['Point [lon  lat]']} Distance from MKAD: {result[i]['Distance from MKAD']}")
     return result
