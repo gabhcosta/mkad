@@ -49,7 +49,7 @@ class AppSettings(ABC):
     )
 
     LOG_FILE_PATH = os.path.join(
-        os.path.dirname(__main__.__file__), 'logs\\', '.log'
+        os.path.dirname(__main__.__file__), 'logs/', '.log'
     )
     
 
