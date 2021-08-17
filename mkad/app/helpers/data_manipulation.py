@@ -1,5 +1,6 @@
 import numpy as np
-from shapely.geometry import Point
+from shapely.geometry import Point, MultiPoint
+from shapely.geometry.polygon import Polygon
 from mkad.app.helpers import input_checkers
 
 def generate_shapely_point(point:str= None) -> Point:
@@ -10,7 +11,7 @@ def generate_shapely_point(point:str= None) -> Point:
     # Input Validators
     if not isinstance(point, str):
         raise ValueError(f'Expected type str. Got {type(point)}')
-
+    input_checkers.isvalidcoord(point)
     lon= float(point.split()[0])
     lat= float(point.split()[1])
     return Point(lat, lon)
@@ -32,7 +33,7 @@ def get_equidistant_points(p1:np.ndarray= None, p2:np.ndarray= None, parts:int= 
                np.linspace(p1[1], p2[1], parts+1))
 
 
-def redistribute_vertices(vertices:np.ndarray= None, parts:int= None) -> np.ndarray:
+def redistribute_vertices(vertices:np.ndarray= None, parts:int= 200) -> np.ndarray:
     """This function is responsible for the distribution of equidistant points along the lines that compose the polygon boundary.
     """
 
@@ -83,3 +84,19 @@ def build_address(args:dict= None) -> str:
             parts.append(p)
 
     return  ", ".join(parts)
+
+
+def build_polygon(lonlat_list:list= None) -> Polygon:
+
+    points= list()
+    for lonlat in lonlat_list:
+        points.append(generate_shapely_point(lonlat))
+    
+    polygon= MultiPoint(points).convex_hull
+
+
+    #Input validator
+    input_checkers.isvalidpolygon(polygon)
+
+    new_points= redistribute_vertices(np.array(polygon.exterior.coords))
+    return MultiPoint(new_points).convex_hull

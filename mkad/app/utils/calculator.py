@@ -6,7 +6,7 @@ from mkad.app.helpers.input_checkers import isinside
 
 
 
-def calculate_distance_from_to(point:Point= None, polygon:Polygon= Polygon(MKAD_POLYGON_COORDS)) -> float:
+def calculate_distance_from_to(point:Point= None, polygon:Polygon= None) -> float:
     """This function calculates the distance, in km, from a location to a specified polygon. 
     \nThe calculation is based on the function vincenty. See https://en.wikipedia.org/wiki/Vincenty%27s_formulae
     """

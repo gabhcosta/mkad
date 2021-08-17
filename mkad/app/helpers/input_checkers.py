@@ -67,6 +67,40 @@ def isinside(point:Point= None, polygon:Polygon= None) -> bool:
      return polygon.contains(point) or polygon.touches(point) or point.within(polygon)
 
 
-def has_special_char(string:str= None, special_charstring:str= "!@#$\\%^&*()-+?_=,<>/") -> None:
+def has_special_char(string:str= None, special_charstring:str= "!@#$\\%^&*()-+?_=<>/") -> None:
      if any(c in special_charstring for c in string):
+          logging.info(f"{'-' * 42} END OF REQUEST {'-' * 46}")
           abort(400, status_code='400', error='SpecCharNotAllowed', message= 'The request contains a special character that is not allowed.')
+
+
+def isvalidcoord(point:str= None) -> None:
+     error = False
+     try:
+          if len(point.split()) > 2:
+               error= True
+          _lon= float(point.split()[0])
+          _lat= float(point.split()[1])
+     except:
+          error= True
+     else:
+          if _lon > 180 or _lon < -180:
+               error= True
+          if _lat > 90 or _lat < -90:
+               error= True
+     finally:
+          if error:
+               logging.info(f"{'-' * 42} END OF REQUEST {'-' * 46}")
+               abort(400, status_code='400', error='InvalidCoords', message= f'The request contains an invalid coord {point}.')
+
+
+def has_len_shorter_than(obj_list:list= None, maxlen:int= 20) -> None:
+
+     if not len(obj_list) <= maxlen:
+          logging.info(f"{'-' * 42} END OF REQUEST {'-' * 46}")
+          abort(400, status_code='400', error='MaxCoordsExceeded', message= f'The request too many coords, maximum allowed is {maxlen}.')
+
+
+def isvalidpolygon(polygon:Polygon= None) -> None:
+     if not polygon.is_valid or not isinstance(polygon, Polygon):
+          logging.info(f"{'-' * 42} END OF REQUEST {'-' * 46}")
+          abort(400, status_code='400', error='InvalidCoords', message= 'The request has points that do not form a valid polygon.')
