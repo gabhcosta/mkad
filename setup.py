@@ -8,7 +8,7 @@ setup(
    author= 'Gabriel Costa',
    author_email= 'gabrielsantos.ghsc@gmail.com',
    packages= ['mkad'],
-   python_requires='>=3.8',
+   python_requires='<3.9',
    install_requires= [
        'pandas==1.3.1',
        'shapely==1.7.1',

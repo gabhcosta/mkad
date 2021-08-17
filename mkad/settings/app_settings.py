@@ -38,7 +38,7 @@ class AppSettings(ABC):
         except:
             pass
     """
-    environment = os.getenv('ENVIRONMENT') or 'development'
+    environment = os.getenv('API_ENVIRONMENT') or 'development'
 
     _parser: ConfigParser = ConfigParser(interpolation=ExtendedInterpolation()) if environment == 'production' \
                             else ConfigParser()

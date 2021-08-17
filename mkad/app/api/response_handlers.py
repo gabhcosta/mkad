@@ -33,7 +33,7 @@ def generate_response(r:Response= None, polygon:Polygon= MultiPoint(MKAD_POLYGON
                     'Response Status': 'Exact',
                     'Point [lon  lat]': point[0]['pos'],
                     'Address Found': address[0],
-                    'Distance from MKAD': f"{calculate_distance_from_to(generate_shapely_point(point[0]['pos'], polygon))} km"
+                    'Distance from MKAD': f"{calculate_distance_from_to(generate_shapely_point(point[0]['pos']), polygon)} km"
                 }
         logging.info(f"---> Response Status: Exact")
         logging.info(f"---------> Point: {result['Point [lon  lat]']} Distance from MKAD: {result['Distance from MKAD']}")
