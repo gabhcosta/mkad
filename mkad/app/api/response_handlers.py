@@ -14,8 +14,8 @@ researcher = KeyResearcher()
 def generate_response(r:Response= None, polygon:Polygon= MultiPoint(MKAD_POLYGON_COORDS).convex_hull) -> dict:
     """ This function is responsible for interpreting the response from the Yandex api and returning the appropriate response. 
     If Yandex doesn't return any locale or returns an error, the input validators will generate an error. 
-    If this method can interpret the answer correctly, it returns a single answer (Accurate), if Yandex returns only one location,
-    otherwise it returns several answers (Inaccurate) for all the locations that Yandex returned.
+    If this method can interpret the answer correctly, it returns a single answer (Exact), if Yandex returns only one location,
+    otherwise it returns several answers (Inaccurate, limit 10) for all the locations that Yandex returned.
     """
 
     # Input Validators

@@ -87,6 +87,8 @@ def build_address(args:dict= None) -> str:
 
 
 def build_polygon(lonlat_list:list= None) -> Polygon:
+    """This function is responsible for building a polygon based on the coordinates that the user passed in.
+    """
 
     points= list()
     for lonlat in lonlat_list:

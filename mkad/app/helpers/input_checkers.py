@@ -5,9 +5,8 @@ from flask_restful import abort
 
 
 def has2arguments(args:dict= None) -> None:
-     """
-     Checks whether a dictionary has at least 3 non-null values in key:value pairs. 
-     If the dictionary is not valid, throws an HTTPException 400.
+     """Checks whether a dictionary has at least 3 non-null values in key:value pairs. 
+     \nIf the dictionary is not valid, throws an HTTPException 400.
      """
      
      # Input Validators  
@@ -24,9 +23,8 @@ def has2arguments(args:dict= None) -> None:
 
 
 def isbiggerthanzero(found:list= None) -> None:
-     """
-     Checks if the list is non-empty "[]" and if its first value is greater than 0.
-     If the list is not valid, throws an HTTPException 404.
+     """Checks if the list is non-empty "[]" and if its first value is greater than 0.
+     \nIf the list is not valid, throws an HTTPException 404.
      """
 
      # Input Validators  
@@ -39,8 +37,7 @@ def isbiggerthanzero(found:list= None) -> None:
           
 
 def haserror(error:list= None) -> None:
-     """
-     Checks if the list exists, if it does, throws the exception which must be in the first position of the list.
+     """Checks if the list exists, if it does, throws the exception which must be in the first position of the list.
      """
 
      # Input Validators  
@@ -53,9 +50,8 @@ def haserror(error:list= None) -> None:
 
 
 def isinside(point:Point= None, polygon:Polygon= None) -> bool:
-     """
-     Check if the point belongs to the polygon. If it is on the border or inside it returns True.
-     Consider that the Point and the Polygon are Shapely objects.
+     """Check if the point belongs to the polygon. If it is on the border or inside it returns True.
+     \nConsider that the Point and the Polygon are Shapely objects.
      """
 
      # Input Validators
@@ -68,12 +64,16 @@ def isinside(point:Point= None, polygon:Polygon= None) -> bool:
 
 
 def has_special_char(string:str= None, special_charstring:str= "!@#$\\%^&*()-+?_=<>/") -> None:
+     """This function is responsible for checking whether there are any special characters in the request string
+     """
      if any(c in special_charstring for c in string):
           logging.info(f"{'-' * 42} END OF REQUEST {'-' * 46}")
           abort(400, status_code='400', error='SpecCharNotAllowed', message= 'The request contains a special character that is not allowed.')
 
 
 def isvalidcoord(point:str= None) -> None:
+     """This function is responsible for checking if the coordinate value is valid.
+     """
      error = False
      try:
           if len(point.split()) > 2:
@@ -94,6 +94,8 @@ def isvalidcoord(point:str= None) -> None:
 
 
 def has_len_shorter_than(obj_list:list= None, maxlen:int= 20) -> None:
+     """This function is responsible for checking whether the number of items in the coordinate list is smaller than specified.
+     """
 
      if not len(obj_list) <= maxlen:
           logging.info(f"{'-' * 42} END OF REQUEST {'-' * 46}")
@@ -101,6 +103,8 @@ def has_len_shorter_than(obj_list:list= None, maxlen:int= 20) -> None:
 
 
 def isvalidpolygon(polygon:Polygon= None) -> None:
+     """This function checks if the polygon is valid.
+     """
      if not polygon.is_valid or not isinstance(polygon, Polygon):
           logging.info(f"{'-' * 42} END OF REQUEST {'-' * 46}")
           abort(400, status_code='400', error='InvalidCoords', message= 'The request has points that do not form a valid polygon.')

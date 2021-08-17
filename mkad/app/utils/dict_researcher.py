@@ -9,10 +9,10 @@ class KeyResearcher():
     if not isinstance(key, str):
       raise ValueError(f'Expected type str. Got {type(key)}')
 
-    self.occurrences= list()
+    self._occurrences= list()
     self.__recursive_search(data, key)
-    result= self.occurrences.copy()
-    self.occurrences= list()
+    result= self._occurrences.copy()
+    self._occurrences= list()
     return result
     
   def __recursive_search(self, data:dict=None, key:str=None) -> None:
@@ -20,13 +20,13 @@ class KeyResearcher():
       if isinstance(v, list):
         for i in range(len(v)):
           if k == key:
-            self.occurrences.append(v)
+            self._occurrences.append(v)
           self.__recursive_search(v[i], key)      
       elif isinstance(v, dict):
         if k == key:
-          self.occurrences.append(v)
+          self._occurrences.append(v)
         self.__recursive_search(v,key)
       else:
         if k == key:
-          self.occurrences.append(v)
+          self._occurrences.append(v)
         continue
