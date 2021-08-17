@@ -36,7 +36,7 @@ def generate_response(r:Response= None, polygon:Polygon= MultiPoint(MKAD_POLYGON
                     'Distance': f"{calculate_distance_from_to(generate_shapely_point(point[0]['pos']), polygon)} km"
                 }
         logging.info(f"---> Response Status: Exact")
-        logging.info(f"---------> Point: {result['Point [lon  lat]']} Distance from MKAD: {result['Distance from MKAD']}")
+        logging.info(f"---------> Point: {result['Point [lon  lat]']} Distance: {result['Distance']}")
 
     # Inaccurate, it means that Yandex returned more than 1 locality
     else:   
@@ -48,5 +48,5 @@ def generate_response(r:Response= None, polygon:Polygon= MultiPoint(MKAD_POLYGON
                                 'Address Found': address[i],
                                 'Distance': f"{calculate_distance_from_to(generate_shapely_point(point[i]['pos']), polygon)} km"
                             }
-            logging.info(f"---------> Point [lon  lat]: {result[i]['Point [lon  lat]']} Distance from MKAD: {result[i]['Distance from MKAD']}")
+            logging.info(f"---------> Point [lon  lat]: {result[i]['Point [lon  lat]']} Distance: {result[i]['Distance']}")
     return result

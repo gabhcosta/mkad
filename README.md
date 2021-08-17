@@ -160,42 +160,42 @@ response= {
     "0": {
         "Point [lon  lat]": "37.617644 55.755819",
         "Address Found": "Russia, Moscow",
-        "Distance from MKAD": "0.0 km"
+        "Distance": "0.0 km"
     },
     "1": {
         "Point [lon  lat]": "36.515241 56.67366",
         "Address Found": "Russia, Tver Region, Ivan'kovo Reservoir",
-        "Distance from MKAD": "105.22 km"
+        "Distance": "105.22 km"
     },
     "2": {
         "Point [lon  lat]": "38.874756 55.531132",
         "Address Found": "Russia, Moscow Region",
-        "Distance from MKAD": "66.78 km"
+        "Distance": "66.78 km"
     },
     "3": {
         "Point [lon  lat]": "37.04928 55.709454",
         "Address Found": "Russia, Moskva River",
-        "Distance from MKAD": "20.55 km"
+        "Distance": "20.55 km"
     },
     "4": {
         "Point [lon  lat]": "37.239193 55.412917",
         "Address Found": "Russia, Moscow, New Moscow",
-        "Distance from MKAD": "26.7 km"
+        "Distance": "26.7 km"
     },
     "5": {
         "Point [lon  lat]": "37.489859 56.298177",
         "Address Found": "Russia, Moscow Region, Moscow Canal",
-        "Distance from MKAD": "43.45 km"
+        "Distance": "43.45 km"
     },
     "6": {
         "Point [lon  lat]": "34.047955 45.059478",
         "Address Found": "Russia, Republic of Crimea, Moskovskoye Highway",
-        "Distance from MKAD": "1196.38 km"
+        "Distance": "1196.38 km"
     },
     "7": {
         "Point [lon  lat]": "46.82472 56.036774",
         "Address Found": "Russia, M-7 Volga",
-        "Distance from MKAD": "561.87 km"
+        "Distance": "561.87 km"
     }
 }
 ```
