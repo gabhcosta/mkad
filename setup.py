@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
    name= 'mkad',
@@ -7,7 +7,7 @@ setup(
    url= 'https://github.com/gabhcosta/mkad',
    author= 'Gabriel Costa',
    author_email= 'gabrielsantos.ghsc@gmail.com',
-   packages= ['mkad'],
+   packages= find_packages(),
    python_requires='<3.9',
    install_requires= [
        'pandas==1.3.1',
