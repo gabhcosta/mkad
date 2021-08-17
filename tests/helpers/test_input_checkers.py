@@ -1,6 +1,6 @@
-from mkad.app.helpers import input_checkers
+from mkad.app.helpers import input_checkers, data_manipulation
 from flask_restful import HTTPException
-from shapely.geometry import Point
+from shapely.geometry import Point, MultiPoint
 from shapely.geometry.polygon import Polygon
 from mkad.app.data import MKAD_POLYGON_COORDS
 
@@ -49,3 +49,46 @@ def test_isinside():
 
     assert result1 == expected1
     assert result2 == expected2
+
+def test_as_special_char():
+    string='sadhuashdsaiudha&sadihas'
+
+    try:
+        input_checkers.has_special_char(string)
+    except Exception as e:
+        assert isinstance(e, HTTPException)
+
+
+def test_isvalidcoord():
+    point=["-1873 -8741"]
+
+    try:
+        input_checkers.isvalidcoord(point)
+    except Exception as e:
+        assert isinstance(e, HTTPException)
+
+
+def test_has_len_shorter_than():
+    points=["-1873 -8741", "-1873 -8741", "-1873 -8741" ]
+
+    try:
+        input_checkers.has_len_shorter_than(points, 2)
+    except Exception as e:
+        assert isinstance(e, HTTPException)
+    
+
+def test_isvalidpolygon():
+    lonlat_list= ["-80.40604412766334 12.694830944052345", "-81.63651287766334 -56.5771338389153"]
+    points= list()
+    for lonlat in lonlat_list:
+        points.append(data_manipulation.generate_shapely_point(lonlat))
+    
+    polygon= MultiPoint(points).convex_hull
+
+    try:
+        input_checkers.isvalidpolygon(polygon)
+    except Exception as e:
+        assert isinstance(e, HTTPException)
+    
+    
+    

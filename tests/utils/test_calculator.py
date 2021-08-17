@@ -5,7 +5,7 @@ from mkad.app.utils import calculator
 
 def test_calculate_distance_from_to():
 
-    result= calculator.calculate_distance_from_to(Point(-27.581393, -48.618189))
+    result= calculator.calculate_distance_from_to(Point(-27.581393, -48.618189), Polygon(MKAD_POLYGON_COORDS))
     expected= 12253.91
 
     assert result == expected
