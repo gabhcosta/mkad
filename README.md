@@ -7,7 +7,7 @@ As an example, data from the Moscow Automobile Ring Road (MKAD) is used, but the
 
 ## Requirements
 * Python less than 3.8 (required)
-* <a href= "https://yandex.com/dev/maps/geocoder/"> Yandex Geocoder API </a> (required)
+* <a href= "https://yandex.com/dev/maps/geocoder/"> Yandex Geocoder API key</a> (required)
 * <a href="https://www.docker.com/"> Docker </a> (not required, but recommended)
 * <a href= "https://docs.docker.com/compose/"> Docker Compose </a> (not required, but recommended)
 * <a href="https://www.postman.com/downloads/"> Postman </a> or some other for API testing tool
