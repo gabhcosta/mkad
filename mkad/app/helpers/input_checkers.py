@@ -63,7 +63,7 @@ def isinside(point:Point= None, polygon:Polygon= None) -> bool:
      return polygon.contains(point) or polygon.touches(point) or point.within(polygon)
 
 
-def has_special_char(string:str= None, special_charstring:str= "!@#$\\%^&*()-+?_=<>/") -> None:
+def has_special_char(string:str= None, special_charstring:str= "!@#$\\%^&*()+?_=<>/") -> None:
      """This function is responsible for checking whether there are any special characters in the request string
      """
      if any(c in special_charstring for c in string):
